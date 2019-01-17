@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.17.1/axios.min.js"></script>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+    //axios返回promise对象，，成功后调用then方法，失败调用catch
+    const usersPromise = axios.get('https://api.github.com/user');
+
+    usersPromise
+        .then(reponse =>{
+            //then方法返回promise对象给下一个then使用
+            username =reponse.data[0].login;
+            return axios.get(`https://api.github.com/users/${username}/repos`);
+        })
+        .then(reponse =>{
+            console.log(reponse.data);
+        })
+        .catch(err =>{
+            console.log(err);
+        })
+</script>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    /*
+   箭头函数
+     */
+    const nums = [1,3,4,45,23,24,52323];
+    const show1 = nums.map(function (num)
+    {
+        //console.log(num);
+        return num * 2;
+    });
+
+    //显示返回
+    const show2 = nums.map((num,key) => {
+        //console.log(num);
+        return `${key} -- ${num * 3}`;
+    });
+
+    //隐试返回
+    const  show3 = nums.map((num,key) => `${key} -${num *3}` );
+
+    console.log(show3);
+
+    //函数
+    const greet = function (name) {
+        alert(`hello ${name}`);
+    }
+
+    const greet1 = name => {alert(`hello ${name}`)};
+
+    greet1('jarvis');
+
+    //箭头函数的this不会继承window，只继承父作用域
+    const jarvis = {
+        name : 'jarvis',
+        can : ['eat','sleep','code'],
+        showthis:function () {
+            this.can.map(function (some) {
+                console.log(`${this.name} can ${some}`);
+            })
+        },
+        show : function () {
+            this.can.map(some => {
+                console.log(`${this.name} can ${some}`);
+            })
+        }
+    }
+    //this指向window
+    jarvis.showthis();
+    jarvis.show();
+</script>
+</body>
+</html>

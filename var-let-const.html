@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>菜鸟教程(runoob.com)</title>
+</head>
+<body>
+
+</body>
+<script>
+ /*
+ var 声明的变量可以重新赋值,他是一个全局变量
+ let 块级作用域 {块级作用域只作用在大括号里面}
+ const 块级作用域
+*/
+
+
+ var price = 100;
+ var count = 10;
+
+ if (count > 5){
+     //var discount = price * 0.6;  //可以在控制台输出discount
+     //let discount = price * 0.6;  //不可以在控制台输出discount
+     const discount = price * 0.6;  //不可以在控制台输出discount
+     console.log(discount);
+ }
+
+ let a = 100;  //全局作用于定义，
+ let b = 10;
+ if (b >5){
+     let a = 50; //块级作用于定义的，只能在块级作用域起作用
+ }
+ console.log(a);
+
+ //不能改变person。但是能改变属性，person.age =18
+const person = {
+    name:'jarvis',
+    age:20
+};
+
+const jarvis = Object.freeze(person); //不允许改变，person.age =18会无效
+
+
+ //同样C还是10，块级作用域
+const c = 10;
+if (count > 5) {
+    const c = 100;
+}
+
+//临时性死区
+console.log(color);
+var color = 'green';  //变量提升，但是不会报错
+let color = 'yellow';  //会报错，不能在之前定义
+const color = 'yellow';  //会报错，不能在之前定义
+
+
+/*
+申明变量
+1、默认使用const（不能被重新赋值）
+2、需要重新赋值的使用let
+3、尽量少使用var  (污染全局)
+*/
+
+
+</script>
+</html>

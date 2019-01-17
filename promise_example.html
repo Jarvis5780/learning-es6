@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    const peomise = new Promise((resolve,reject) =>{
+        setTimeout(()=>{
+            return resolve('Hello resolve');
+            //reject(Error('Hello reject'));  //使用Error方法可以查到是哪行报错了，
+        },2000);
+    });
+
+    peomise.then(data => {
+        console.log(data);
+    }).catch(err => {
+        console.error(err);
+
+    })
+
+    //Promise.all
+    //只有返回的所有方法是resolve的时候才会触发then，有一个promise返回reject就会返回catch
+    const Promise1 = new Promise((resolve,reject) => {
+        return resolve('Promise1');
+    });
+    const Promise2 = new Promise((resolve,reject) => {
+        return resolve('Promise2');
+    });
+    const Promise3 = new Promise((resolve,reject) => {
+        return reject(Error('Promise3'));
+    });
+
+    Promise.all([Promise1,Promise2]).then(responses =>{
+        console.log((responses));
+    }).catch(err =>{
+        console.log(err);
+    });
+
+    //race只有有一个Promise返回resolve就会触发then，或者只有一个promise返回reject就会触发catch，写三个promise只会执行一个返回接口，，也就是第一个
+    Promise.race([Promise1,Promise2,Promise3]).then(data =>{
+        console.log(data);
+    }).catch(err =>{
+        console.log(err);
+    });
+</script>
+</html>
